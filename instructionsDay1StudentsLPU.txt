@@ -1,0 +1,150 @@
+Github URL- https://github.com/YogeshRaje/FICE_LPU
+
+
+tinyurl -  https://tinyurl.com/FICELPU27
+
+Day1
+
++++++++++++++++++++++++++++++++++++++++++++
+***Task 1- Sign In on Intel Devlcloud and create new directory - https://devcloud.intel.com/oneapi/ 
+step1)-Sign In and LogIn into Intel OneAPI Devcloud account
+
+https://devcloud.intel.com/oneapi/
+
+
+step2) Launch Jupyter Lab
+
+step3) Open Terminal in Dev clould 
+ Click on + symbol and then select Terminal icon form other catergory. It will open linux terminal. 
+
+step4)create direcotry ac
+  $mkdir lpu
+
+step5) change directory to ac
+  $cd lpu
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Task 2-Run python file on CPU , GPU and FPGA using Intel Distribution of Python
+(IDP ) on Intel Devcloud 
+
+step1) open terminal and run command 
+# git clone https://github.com/YogeshRaje/FICE_LPU
+
+# cd INTLE_FICE_LPU
+
+step2) Create run.sh file 
+$nano run.sh 
+add following line of code 
+
+#!/bin/bash
+%%qsub
+cd $PBS_O_WORKDIR
+python demo_python1.py
+
+-save run.sh and return to terminal 
+
+
+step3)run code on GPU- How to target specific GPUs
+The command for submitting a job to a compute node hosting a GPU is: 
+
+$qsub -l nodes=1:gpu:ppn=2 run.sh 
+
+step3a) Run code on genration9 processor 
+$qsub -l nodes=1:gen9:ppn=2 run.sh
+
+step4) Run code on xeon processor 
+$qsub -l nodes=1:xeon:ppn=2 run.sh
+
+step5) run code on fpga emulator
+$qsub -l nodes=1:fpga_compile:ppn=2 -d . run.sh
+ 
+step6) run code on fpga hardware Arria
+$qsub -l nodes=1:fpga_runtime:arria10:ppn=2 -d . run.sh
+
+step7) run code on fpga hardware Stratix
+$qsub -l nodes=1:fpga_runtime:stratix10:ppn=2 -d . run.sh
+
+
+It will create two files- run.sh.e2081402  and run.sh.o2081402
+ 
+-To check output run command on terminal 
+>cat run.sh.o2081402
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Task 3 - Run Basic commands on Intel devcloud terminal-
+
+step1) open devcloud terminal-
+Click on + symbol and then select Terminal icon form other catergory. It will open linux terminal.
+
+step2) How to list all compute nodes and their properties
+     $ pbsnodes
+
+step3)How to list the free compute nodes (lower-case ‘L’)
+    $     pbsnodes -l free
+
+step4)list details of perticular subnode 
+for example - 
+  $ pbsnodes s001-n144
+
+step5)Listing compute node properties
+    $ pbsnodes | sort | grep properties 
+
+step5)Targeting specific compute nodes
+    $ pbsnodes | sort | grep properties | grep gpu 
+    
+    
+
+
++++++++++++++++++++++++++++++++++++++++++++++++
+Task 4 - Install Anaconda 
+step1) open url 
+https://www.anaconda.com/products/distribution
+
+Step2 ) click on Download button
+Installer will download 
+
+step3) Run installer file and install anaconda 
+
+step4) check the installation 
+-open Anaconda prompt 
+-Open Anaconda nagivator
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+Task 5- Install Intel Distribution of Python on Laptop
+-Search for intel distribution for python 
+https://www.intel.com/content/www/us/en/developer/tools/oneapi/distribution-for-python.html
+
+-click on Download the Stand-Alone Version
+https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html#python
+
+-select Intel Distribution for Python for Windows*  to download and install it 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Task 6- Demo - How to Activate and run sample program using Intel Distribution of Python on Laptop
+**After installation of oneAPI:Intel Distribution for Python follow the following steps
+  
+-open anaconda Prompt
+- cd  C:\Program Files (x86)\Intel\oneAPI\intelpython\python3.9\Scripts
+-> activate
+- Check the python version
+> python --version
+
+***It shows output as Python 3.9.10 :Intel Corporation . It means Intel OneAPI:Intel distribution is initialized on your local machine.
+ 
++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+Task 7 - check number of cores on  machine 
+step1- open new .ipynb file 
++ Python3(Intel OneAPI 2023.0)
+and wirte follwoing code 
+
+import multiprocessing  as mp 
+print("Number of cores in my laptop are: " ,mp.cpu_count())
+
++++++++++++++++++++++++++++++++++++++++++++++
