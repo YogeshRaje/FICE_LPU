@@ -17,10 +17,10 @@ step2) Launch Jupyter Lab
 step3) Open Terminal in Dev clould 
  Click on + symbol and then select Terminal icon form other catergory. It will open linux terminal. 
 
-step4)create direcotry ac
+step4)create direcotry lpu
   $mkdir lpu
 
-step5) change directory to ac
+step5) change directory to lpu
   $cd lpu
 
 
