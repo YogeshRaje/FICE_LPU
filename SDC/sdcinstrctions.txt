@@ -1,0 +1,8 @@
+Task -SDC Installation
+https://intelpython.github.io/sdc-doc/latest/getting_started.html#installation
+
+Intel SDC conda package can be installed using the steps below:
+-open anaconda prompt
+> conda create -n sdc_env python=<3.7 or 3.6>
+> conda activate sdc_env
+> conda install sdc -c intel/label/beta -c intel -c defaults -c conda-forge --override-channels
